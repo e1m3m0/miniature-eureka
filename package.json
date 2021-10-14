@@ -10,8 +10,7 @@
   "author": "Guillermo Mateo",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
-    "heroku": "^7.59.0"
+    "express": "^4.16.4"
   },
   "directories": {
     "lib": "lib"
