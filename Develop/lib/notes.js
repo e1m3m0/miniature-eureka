@@ -1,10 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 
-// function findById(id, notesArray) {
-//   const result = notesArray.filter(notes => notes === id)[0];
-//   return result;
-// }
+function findById(id, notesArray) {
+  const result = notesArray.filter(notes => notes.id === id)[0];
+  return result;
+}
 
 function createNewNote(body, notesArray) {
   const note = body;
@@ -26,4 +26,4 @@ function validateNote(note) {
   return true;
 }
 
-module.exports = { createNewNote, validateNote };
+module.exports = { createNewNote, validateNote, findById };

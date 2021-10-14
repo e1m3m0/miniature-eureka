@@ -55,14 +55,14 @@ const renderActiveNote = () => {
 
   if (activeNote.id) {
     noteTitle.setAttribute('readonly', true);
-    noteText.setAttribute('readonly', true);
+    noteText.setAttribute('readonly', true);    
     noteTitle.value = activeNote.title;
     noteText.value = activeNote.text;
-  } else {
+    } else {
     noteTitle.removeAttribute('readonly');
-    noteText.removeAttribute('readonly');
+    noteText.removeAttribute('readonly');    
     noteTitle.value = '';
-    noteText.value = '';
+    noteText.value = '';   
   }
 };
 
@@ -70,6 +70,7 @@ const handleNoteSave = () => {
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
+    id: noteTitle.value.toLowerCase().replace(/\s+/g, ''),
   };
   saveNote(newNote).then(() => {
     getAndRenderNotes();
@@ -82,8 +83,10 @@ const handleNoteDelete = (e) => {
   // Prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
 
-  const note = e.target;
-  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+  const note = e.target.parentElement;
+  console.log(note);
+  const noteId = note.id;
+  console.log(noteId);
 
   if (activeNote.id === noteId) {
     activeNote = {};
@@ -129,6 +132,7 @@ const renderNoteList = async (notes) => {
   const createLi = (text, delBtn = true) => {
     const liEl = document.createElement('li');
     liEl.classList.add('list-group-item');
+    liEl.setAttribute('id', text.toLowerCase().replace(/\s+/g, ''));
 
     const spanEl = document.createElement('span');
     spanEl.classList.add('list-item-title');
